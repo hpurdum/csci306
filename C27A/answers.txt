@@ -1,0 +1,26 @@
+Author: Henry Purdum
+
+C27A - SOLID Part 1 (Individual)
+
+SRP:
+	Q1) see C27C-SRP directory and it's corresponding files for more information here.
+	
+	Q2) my Board class probably violates SRP in more than a couple places. The 3 places I chose to focus on are:
+		a) findAllTargets(): this violates SRP because the targets should realistically be found in a more compacted class for dealing with player movement. One better place to put an implementation for this function would be in our Player.java class.
+		
+		b) loadLayoutConfig(): although this placement works fine for implementation, it would probably be better SRP practice to but all initializing functions for our game in a seperate ClueInit class.
+
+		c) setupCards(): similar to loadLayoutConfig, we probably want this function in a seperate init class because although the board must exist before we call this function, logically it doesn't make much sense to think that our board should be responsible for setting up our cards. Therefore this function belongs in a seperate init class.
+
+OCP:
+	Q3) see C27C2-OCP directory and it's corresponding files for more information here.
+
+	Q4) the main problem with the way that this code was initially setup is that it relied on the developer manually writing statements for each type of animal for each function they wanted to do something for. I've taken the liberty of rewritting the code to allow for functionality for as many animals as you want. Now the only code you need to write to make the PetStore main function work for any Pet is define a child class of Pet that holds a constructor with that pet's name and calls the Pet constructor with the name, and a few string fields to define this kind of animal's preferred sound, food, and fun. Then add the pet to the petstore in main. Et Voila!
+
+ISP:
+	Q5) this design violates ISP because the Book class is a bit too dense. If the Book class has a restock function defined and our EBook class inherits that the functions and variables of Book, suddenly you can restock an eBook? and now eBooks have a minInStock variable? That obviously doesn't make sense so the better thing to do is make a very general book class with only the bar minimum variables and functions like title, author, and ISBN. Then make child classes for each variant of book (eBook, hardcover, paperback, etc.) and expand on that general book class here (adding variables for cost, stock, etc. and functions for restock() and deliver(), etc.).
+
+	Q6) see UML png file for more information here.
+
+BONUS:
+	Q7) No I don't think you really do need the child classes. Every student will have a major, and the major they have shouldn't impact implementation of any functions belonging to the student class. Therefore I see no real reason to have these child classes.
